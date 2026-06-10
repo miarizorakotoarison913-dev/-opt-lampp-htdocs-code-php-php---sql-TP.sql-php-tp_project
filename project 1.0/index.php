@@ -13,7 +13,6 @@
     <header>
     <div class="section text-center bg-info">
     <h1><a href="page/liste.php">LISTE DES DEPARTEMENTS</a></h1>
-    <h1><a href="page/manager.php">LISTE DES MANAGER DANS LES DEPARTEMENTS</a></h1>
 
     </div>
     </header>
