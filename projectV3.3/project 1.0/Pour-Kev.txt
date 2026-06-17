@@ -1,0 +1,34 @@
+    function get_filtered($last, $department, $nom, $prenom , $min, $max)
+    {
+        $max_annee = 2026-$max;
+        $min_annee = 2026-$min;
+        $sup = '>';
+        $inf = '<';
+        $query = "select * from dept_emp de join employees em on de.emp_no=em.emp_no where dept_no='".$department."' ";
+
+        if(strlen($nom) > 0)
+        {
+            $query = $query." and em.last_name like'%".$nom."%'"; 
+            echo $query;
+        }
+
+        if(strlen($prenom) > 0)
+        {
+            $query = $query." and em.first_name like'%".$prenom."%'";
+        }
+        $query = $query." and year(birth_date)".$sup."=".$max_annee." and year(birth_date)".$inf."=".$min_annee." limit ".$last." , 20";
+
+        
+        // echo($query);
+        $result = mysqli_query(db_connect(), $query);
+        $retour = array();
+
+        while($value = mysqli_fetch_assoc($result) )
+        {
+            $retour[] = $value;
+        }
+        mysqli_free_result($result);
+
+        return $retour;
+
+    }
