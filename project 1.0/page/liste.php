@@ -5,8 +5,6 @@ dbconnect();
 $sql= "select dept_no,dept_name from departments";
 $sql_manager = "select mgr_no, mgr_name from managers"; 
 $resultat = get_all_lines($sql);
-
-$resultat = get_dep($sql);
 $resultat_manager = get_manager($sql);
 ?>
 <!DOCTYPE html>
@@ -19,52 +17,34 @@ $resultat_manager = get_manager($sql);
     <link rel="stylesheet" href="../bootstrap/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-light">
 
     <header>
-    <div class="section text-center bg-warning">
-    <h1>LISTE DES DEPARTEMENTS</h1>
+    <div class="section text-center bg-warning py-3 shadow-sm">
+    <h1 class="fw-bold text-dark mb-0">LISTE DES DEPARTEMENTS</h1>
     </div>
     </header>
 
     <main>
-        <div class="container">       
-            <table border="1" width="500">
+        <div class="container mt-4">       
+            <table class="table table-bordered table-striped shadow-sm" width="1000">
+                <thead class="table-warning">
                 <tr>
                     <th>Numero Departement</th>
                     <th>Nom Departement</th>
+                    <th>Nom Manager</th>
                 </tr>
-                
-        <?php foreach($resultat as $resultat2) { ?>
-            <tr>
-
-                <td width="200"><?= $resultat2["dept_no"] ?></td>
-                <td width="200"><a href="employees.php?id_dep_emp=<?= $resultat2["dept_no"]?>"><?= $resultat2["dept_name"]?></a></td>
-
-
-            </tr>
-        <?php } ?>        
-            </table>
-              <br>
-            <br>
-        <table border="2">
-            <tr>
-                <td>dep_no</td>
-                <td>dep_name</td>
-                <td>first_name</td>
-  
-            </tr>
+                </thead>
+                <tbody>
         <?php foreach($resultat_manager as $resultat_manager2) { ?>
             <tr>
-
                 <td width="200"><?= $resultat_manager2["dept_no"]?></td>
-                <td width="200"><?= $resultat_manager2["dept_name"]?></td>
+                <td width="200"><a href="../traitement/traitement.php?id_dep_emp=<?= $resultat_manager2["dept_no"]?>" class="text-decoration-none text-info fw-semibold"><?= $resultat_manager2["dept_name"]?></a></td>
                 <td width="200"><?= $resultat_manager2["first_name"]?></td>
-
-
             </tr>
-        <?php } ?> 
-        </tab>
+        <?php } ?>
+        </tbody>
+        </table>
         </div>
     </main>
  
